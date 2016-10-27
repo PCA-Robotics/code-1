@@ -1,0 +1,38 @@
+package org.firstinspires.ftc.teamcode;
+
+
+import android.graphics.Path;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+public class Test1 extends OpMode {
+    //declare two variables for left and rigth motor
+    DcMotor leftMotor;
+    DcMotor rightMotor;
+	servo leftclaw;
+	servo rightclaw;
+	
+
+
+    @Override
+    public void init() {
+        //associated the left and right motor to a physical motor (configuration file)
+        leftMotor = hardwareMap.dcMotor.get("left motor");
+        rightMotor =hardwareMap.dcMotor.get("right motor");
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
+		rightclaw =hardwaremap.servo.get("rightclaw");
+		leftclaw =hardwaremap.servo.get("leftclaw");
+		leftclaw .setDirection(servo.Direction.REVERSE);
+    }
+
+    @Override
+    public void loop () {
+        //use game pads to set power level of motor.
+        double leftStick = -gamepad1.left_stick_y;
+        double rightStick = -gamepad1.right_stick_y;
+        leftMotor.setPower(leftStick);
+        rightMotor.setPower(rightStick);
+    }
+}
